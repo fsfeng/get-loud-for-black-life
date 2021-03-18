@@ -1,0 +1,25 @@
+{
+  "name": "mn4bl-next-dev",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "post-update": "yarn upgrade --latest"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "1.1.6",
+    "@chakra-ui/theme": "1.4.1",
+    "@contentful/rich-text-react-renderer": "14.1.2",
+    "@emotion/react": "11.1.4",
+    "@emotion/styled": "11.0.0",
+    "contentful": "7.14.6",
+    "framer-motion": "3.2.2-rc.1",
+    "next": "9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "description": ""
+}
