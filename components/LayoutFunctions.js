@@ -20,9 +20,28 @@ function Header(props) {
       >
         <Heading textStyle="title">{props.title}</Heading>
       </Box>
-      ;
     </>
   );
 }
 
-export { Header };
+function Nav(props) {
+  return (
+    <>
+      <Box
+        pt={{ base: 4, md: 4 }}
+        pl="6"
+        pr={{ base: 6, md: 12 }}
+        pb={{ base: 6, md: 6 }}
+        // bg="yellow.100"
+      >
+        <Text textStyle="heading1">Archive</Text>
+        {/* <ArchiveList /> */}
+        <ul>{props.entries}</ul>
+        <br />
+        <Text textStyle="heading1">ABOUT US</Text>
+      </Box>
+    </>
+  );
+}
+
+export { Header, Nav };

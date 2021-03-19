@@ -7,10 +7,15 @@ const client = require("contentful").createClient({
 });
 
 async function getArchiveEntries() {
-  const entries = await client.getEntries({
+  const res = await client.getEntries({
     content_type: "archiveRecording"
   });
-  if (entries.items) return entries.items;
+
+  const entries = await res.items.map((p) => {
+    return p;
+  });
+
+  if (entries) return entries;
   console.log(`Error getting Entries`);
 }
 

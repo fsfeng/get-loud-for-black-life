@@ -7,12 +7,14 @@ import {
   Box,
   Container,
   Heading,
-  Image,
   ChakraProvider,
   Text,
   Link
 } from "@chakra-ui/react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+import { documentToReactComponent } from "@contentful/rich-text-react-renderer";
 
 // Fonts
 import { Fonts } from "../theme/Fonts";
@@ -27,6 +29,12 @@ import {
   getSiteInfo
 } from "../components/ContentfulFunctions";
 
+// import { getSiteInfo } from "../components/testContentful";
+
+// import Header from "@components/Header";
+// import Footer from "@components/Footer";
+// import Post from "@components/Post";
+
 export default function Home({ entries, info }) {
   const archiveEntries = entries.map((p) => (
     <li key={p.sys.id}>
@@ -35,6 +43,15 @@ export default function Home({ entries, info }) {
       </Link>
     </li>
   ));
+  // console.log(archiveEntries);
+
+  // const rawRichTextField = documentToHtmlString(info.fields.mainDescription);
+
+  // const rawRichTextField = documentToReactComponent(
+  //   info.fields.mainDescription
+  // );
+
+  // console.log(info.fields.mainDescription);
 
   return (
     <Fragment>
@@ -56,19 +73,11 @@ export default function Home({ entries, info }) {
               border="dotted"
               borderColor="orange.200"
             >
-              {/* <br /> */}
-              <Image
-                borderRadius="lg"
-                width={{ md: "80" }}
-                src="https://abcd-artbrut.net/wordpress/wp-content/uploads/2015/09/RIZZY.Ras_.2921.jpg"
-                alt="Woman paying for a purchase"
-              />
-              <br />
               <Text textStyle="heading1">{info.fields.mainHeading}</Text>
-              <br />
 
               <Text textStyle="text">
-                {documentToReactComponents(info.fields.mainDescription)}
+                {/* {rawRichTextField} */}
+                {documentToReactComponent(info.fields.mainDescription)}
               </Text>
             </Box>
 
@@ -99,10 +108,14 @@ export default function Home({ entries, info }) {
 
 export async function getStaticProps() {
   // Get list of archive recordings
-  const entries = await getArchiveEntries();
+  const res = await getArchiveEntries();
 
-  // Get site info
+  const entries = await res.map((p) => {
+    return p;
+  });
+
   const info = await getSiteInfo();
+  console.log(info);
 
   return {
     props: {
