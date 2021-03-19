@@ -18,6 +18,8 @@ import { Fonts } from "../theme/Fonts";
 // Theme
 import chakraTheme from "../theme/chakraTheme";
 
+import { Header } from "../components/LayoutFunctions";
+
 import {
   getArchiveEntries,
   getSiteInfo
@@ -35,16 +37,7 @@ export default function Home({ entries, info }) {
       <ChakraProvider theme={chakraTheme}>
         <Fonts />
         <Container maxW="5xl" centerContent>
-          <Box
-            w="100%"
-            pr={{ base: 6, md: 6 }}
-            pl={{ base: 6, md: 12 }}
-            pt="10"
-            pb="2"
-            // bg="gray.100"
-          >
-            <Heading textStyle="title">{`GET LOUD FOR BLACK LIFE`}</Heading>
-          </Box>
+          <Header title={info.fields.siteTitle} />
 
           <Box
             display={{ sm: "flex" }}
@@ -59,15 +52,12 @@ export default function Home({ entries, info }) {
               border="dotted"
               borderColor="orange.200"
             >
-              <Text textStyle="heading1">
-                Something here about this is who we are
-              </Text>
+              <Text textStyle="heading1">{info.fields.MainHeading}</Text>
 
               <Text textStyle="text">
                 Getting a new business off the ground is a lot of hard work.
                 Here are five ideas you can use to find your first customers.
               </Text>
-              {info.fields.siteTitle}
             </Box>
 
             {/* <Box flexShrink={0}>
@@ -126,6 +116,7 @@ export async function getStaticProps() {
   });
 
   const info = await getSiteInfo();
+  console.log(info);
 
   return {
     props: {
